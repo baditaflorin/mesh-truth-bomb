@@ -1,7 +1,7 @@
 # mesh-truth-bomb
 
 [![pages](https://img.shields.io/badge/live-baditaflorin.github.io%2Fmesh-truth-bomb-ff3344)](https://baditaflorin.github.io/mesh-truth-bomb/)
-[![version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/baditaflorin/mesh-truth-bomb/blob/main/package.json)
+[![version](https://img.shields.io/badge/version-0.1.1-blue)](https://github.com/baditaflorin/mesh-truth-bomb/blob/main/package.json)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 > Spotlight peer answers anonymous questions live; 🔥💯😬 reactions.

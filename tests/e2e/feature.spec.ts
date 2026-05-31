@@ -29,6 +29,16 @@ test("Q drop syncs + spotlight pick advances current Q on both peers", async ({
     await b.waitForTimeout(400);
 
     await expect(b.locator(".tb-current")).toContainText("are you ok");
+
+    // Both peers now see the current question with the 🔥💯😬 reaction row
+    // (the third advertised feature). Bob reacts 🔥; Alice (the OPPOSITE peer)
+    // must see the fire count cross the mesh and tick 0 → 1. The reaction
+    // button renders `🔥 <count>`, so asserting the count proves the toggle
+    // actually wrote to the shared Yjs doc — not just a local UI echo.
+    const aliceFire = a.getByRole("button", { name: "react fire", exact: true });
+    await expect(aliceFire).toHaveText("🔥 0");
+    await b.getByRole("button", { name: "react fire", exact: true }).click();
+    await expect(aliceFire).toHaveText("🔥 1");
   } finally {
     await cleanup();
   }
