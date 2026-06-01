@@ -6,6 +6,8 @@
 
 > Spotlight peer answers anonymous questions live; 🔥💯😬 reactions.
 
+**Try it:** open the live URL in two tabs. In one tab click **claim spotlight**; in the other, type a question and **drop Q**. The spotlight tab picks a question — it appears for everyone, and any peer can react 🔥💯😬.
+
 **Live → https://baditaflorin.github.io/mesh-truth-bomb/**
 
 **Source → https://github.com/baditaflorin/mesh-truth-bomb**

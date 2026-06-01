@@ -114,6 +114,12 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
         maxLength={32}
       />
 
+      <p className="tb-howto">
+        {isSpotlight
+          ? "You're on the spot — pick a question below and answer it out loud."
+          : "Drop an anonymous question, then react to the answer with 🔥💯😬."}
+      </p>
+
       <button
         type="button"
         className="tb-claim"
@@ -121,7 +127,7 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
         onClick={claim.claim}
         disabled={!!claim.claimedBy && !claim.isMine}
       >
-        claim spotlight
+        {claim.isMine ? "you have the spotlight" : "claim spotlight"}
       </button>
 
       <section className={`tb-current ${flash ? "is-flash" : ""}`}>

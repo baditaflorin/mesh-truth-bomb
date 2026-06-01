@@ -15,19 +15,26 @@ test("Q drop syncs + spotlight pick advances current Q on both peers", async ({
   try {
     await a.getByPlaceholder("your name").fill("alice");
     await b.getByPlaceholder("your name").fill("bob");
-    await a.waitForTimeout(500);
 
+    // Alice claims the spotlight. The button label is the source of truth that
+    // the claim landed locally; the status line is what the OTHER peer sees.
     await a.getByRole("button", { name: "claim spotlight", exact: true }).click();
-    await b.waitForTimeout(300);
+    await expect(a.getByRole("button", { name: "claim spotlight", exact: true })).toHaveText(
+      "you have the spotlight",
+    );
+    // Bob (opposite peer) must see Alice named as the spotlight via the mesh.
+    await expect(b.locator(".tb-status")).toContainText("alice");
 
+    // Only a non-spotlight peer can drop a question, so Bob asks anonymously.
     await b.getByPlaceholder("ask anonymously").fill("are you ok");
     await b.getByRole("button", { name: "drop Q", exact: true }).click();
-    await a.waitForTimeout(400);
 
-    // Alice (spotlight) sees the pending question and picks it
+    // Alice (spotlight) sees the pending question cross the mesh and picks it.
+    await expect(a.locator(".tb-pick")).toHaveCount(1);
     await a.locator(".tb-pick").first().click();
-    await b.waitForTimeout(400);
 
+    // The pick advances the current question on BOTH peers — the core sync.
+    await expect(a.locator(".tb-current")).toContainText("are you ok");
     await expect(b.locator(".tb-current")).toContainText("are you ok");
 
     // Both peers now see the current question with the 🔥💯😬 reaction row
