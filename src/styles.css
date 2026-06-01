@@ -68,6 +68,12 @@ body,
   font-size: 0.9rem;
   opacity: 0.85;
 }
+.tb-howto {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.7;
+}
 .tb-name {
   padding: 0.55rem 0.7rem;
   border-radius: 8px;
