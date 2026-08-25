@@ -9,6 +9,7 @@ import {
   useMeshSlot,
   useNamedPeer,
   useReactions,
+  useRoster,
   type MeshConfig,
   type YRoom,
 } from "@baditaflorin/mesh-common";
@@ -37,7 +38,8 @@ export function Feature({ room, config }: Props) {
 
 function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
   const { name, setName, nameOf } = useNamedPeer(config, room);
-  useFairRng(room, "tb-salts");
+  const roster = useRoster(room);
+  useFairRng(room, "tb-salts", { peerIds: roster.present });
   const clock = useMemo(() => createClockSync(room.provider), [room]);
   useEffect(() => () => clock.destroy(), [clock]);
   const slot = useMeshSlot(clock, CLAIM_MS);
